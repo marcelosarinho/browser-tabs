@@ -4,11 +4,14 @@
   --green: oklch(27.7% 0.046 192.524);
   --neutral: oklch(37.1% 0 0);
   --teal: oklch(98.4% 0.014 180.72);
+  --teal-hover: oklch(95.3% 0.051 180.801);
 }
 
 header {
   justify-content: space-between;
   background-color: var(--teal);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid black;
 }
 
 header,
@@ -61,5 +64,5 @@ header,
 }
 
 .header__options > button:hover, .header__more_options:hover {
-  background-color: var(--neutral);
+  background-color: var(--teal-hover);
 }
