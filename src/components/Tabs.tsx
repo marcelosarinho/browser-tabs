@@ -1,6 +1,6 @@
 import TabIcon from "./TabIcon";
 
-export default function Tab() {
+export default function Tabs() {
   return (
     <div className="tab">
       <TabIcon />

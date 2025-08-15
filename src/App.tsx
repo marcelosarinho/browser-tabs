@@ -1,12 +1,12 @@
 import './App.css'
 import Header from './components/Header'
-import Tab from './components/Tab'
+import Tabs from './components/Tabs'
 
 function App() {
   return (
     <main>
       <Header />
-      <Tab />
+      <Tabs />
     </main>
   )
 }

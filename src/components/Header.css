@@ -1,0 +1,59 @@
+header {
+  justify-content: space-between;
+  background-color: var(--teal);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid black;
+}
+
+header,
+.header__buttons,
+.header__options,
+.header__more_options,
+.header__options > button {
+  display: flex;
+}
+
+.header__buttons {
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header__buttons > button,
+.header__options > button,
+.header__more_options {
+  border: none;
+}
+
+.header__buttons > button {
+  border-radius: 100%;
+  padding: 0.4rem;
+}
+
+.header__buttons :first-child {
+  background-color: var(--red);
+}
+
+.header__buttons :nth-child(2) {
+  background-color: var(--yellow);
+}
+
+.header__buttons :last-child {
+  background-color: var(--green);
+}
+
+.header__options {
+  gap: 0.25rem;
+}
+
+.header__options > button, .header__more_options {
+  align-items: center;
+  background-color: transparent;
+  font-size: 1rem;
+  border-radius: 3px;
+  padding: 0.25rem;
+  color: var(--neutral);
+}
+
+.header__options > button:hover, .header__more_options:hover {
+  background-color: var(--teal-hover);
+}
