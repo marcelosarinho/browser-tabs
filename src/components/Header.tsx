@@ -9,21 +9,21 @@ export default function Header() {
 
       <div className="header__options">
         <button type="button">
-          <i className="ph ph-arrow-left"></i>
+          <i className="ph-bold ph-arrow-left"></i>
         </button>
         <button type="button">
-          <i className="ph ph-arrow-right"></i>
+          <i className="ph-bold ph-arrow-right"></i>
         </button>
         <button type="button">
-          <i className="ph ph-arrows-clockwise"></i>
+          <i className="ph-bold ph-arrows-clockwise"></i>
         </button>
         <button type="button">
-          <i className="ph ph-house"></i>
+          <i className="ph-bold ph-house"></i>
         </button>
       </div>
 
       <button className="header__more_options">
-        <i className="ph ph-dots-three"></i>
+        <i className="ph-fill ph-dots-three-outline"></i>
       </button>
     </header>
   )

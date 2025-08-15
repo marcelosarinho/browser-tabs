@@ -1,42 +1,63 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* :root {
+  --red: oklch(57.7% 0.245 27.325);
+  --yellow: oklch(68.1% 0.162 75.834);
+  --green: oklch(62.7% 0.194 149.214);
+  --gray: ;
+} */
+
+header {
+  display: flex;
+  justify-content: space-between;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.header__buttons,
+.header__options,
+.header__more_options,
+.header__options > button {
+  display: flex;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header__buttons {
+  align-items: center;
+  gap: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.header__buttons > button,
+.header__options > button,
+.header__more_options {
+  border: none;
 }
 
-.card {
-  padding: 2em;
+.header__buttons > button {
+  border-radius: 100%;
+  padding: 0.4rem;
 }
 
-.read-the-docs {
-  color: #888;
+.header__buttons :first-child {
+  background-color: red;
+}
+
+.header__buttons :nth-child(2) {
+  background-color: yellow;
+}
+
+.header__buttons :last-child {
+  background-color: green;
+}
+
+.header__options {
+  gap: 0.25rem;
+}
+
+.header__options > button, .header__more_options {
+  align-items: center;
+  background-color: transparent;
+  font-size: 1rem;
+  border-radius: 3px;
+  padding: 0.25rem;
+  color: oklch(37.1% 0 0);
+}
+
+.header__options > button:hover, .header__more_options:hover {
+  background-color: oklch(98.4% 0.014 180.72);
 }
