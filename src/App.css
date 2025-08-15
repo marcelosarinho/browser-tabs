@@ -6,3 +6,9 @@
   --teal: oklch(98.4% 0.014 180.72);
   --teal-hover: oklch(95.3% 0.051 180.801);
 }
+
+main {
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}
