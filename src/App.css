@@ -1,15 +1,17 @@
-/* :root {
+:root {
   --red: oklch(57.7% 0.245 27.325);
   --yellow: oklch(68.1% 0.162 75.834);
-  --green: oklch(62.7% 0.194 149.214);
-  --gray: ;
-} */
-
-header {
-  display: flex;
-  justify-content: space-between;
+  --green: oklch(27.7% 0.046 192.524);
+  --neutral: oklch(37.1% 0 0);
+  --teal: oklch(98.4% 0.014 180.72);
 }
 
+header {
+  justify-content: space-between;
+  background-color: var(--teal);
+}
+
+header,
 .header__buttons,
 .header__options,
 .header__more_options,
@@ -34,15 +36,15 @@ header {
 }
 
 .header__buttons :first-child {
-  background-color: red;
+  background-color: var(--red);
 }
 
 .header__buttons :nth-child(2) {
-  background-color: yellow;
+  background-color: var(--yellow);
 }
 
 .header__buttons :last-child {
-  background-color: green;
+  background-color: var(--green);
 }
 
 .header__options {
@@ -55,9 +57,9 @@ header {
   font-size: 1rem;
   border-radius: 3px;
   padding: 0.25rem;
-  color: oklch(37.1% 0 0);
+  color: var(--neutral);
 }
 
 .header__options > button:hover, .header__more_options:hover {
-  background-color: oklch(98.4% 0.014 180.72);
+  background-color: var(--neutral);
 }
