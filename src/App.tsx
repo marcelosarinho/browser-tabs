@@ -6,7 +6,7 @@ function App() {
 
   return (
     <main>
-      oi
+      <i className="ph ph-browser"></i>
     </main>
   )
 }
