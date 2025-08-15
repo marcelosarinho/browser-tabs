@@ -1,6 +1,8 @@
+import './BrowserURL.css';
+
 export default function BrowserURL() {
   return (
-    <div>
+    <div className="url">
       <span>localhost:5173</span>
     </div>
   )

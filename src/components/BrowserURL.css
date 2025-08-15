@@ -1,0 +1,5 @@
+.url {
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--black);
+}
