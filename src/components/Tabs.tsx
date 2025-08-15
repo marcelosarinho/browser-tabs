@@ -24,6 +24,7 @@ export default function Tabs() {
         <span>Título</span>
         <i className="ph ph-x close"></i>
       </div>
+      <i className="ph ph-plus"></i>
     </section>
   )
 }
