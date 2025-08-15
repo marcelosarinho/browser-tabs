@@ -1,0 +1,30 @@
+.tabs, .tabs__tab {
+  display: flex;
+}
+
+.tabs {
+  border-bottom: 1px solid var(--black);
+}
+
+.tabs__tab {
+  align-items: center;
+  gap: 0.5rem;
+  border-right: 1px solid var(--black);
+  width: fit-content;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  background-color: var(--teal);
+}
+
+.tabs__tab--active {
+  background-color: var(--white);
+  border-bottom: 2px solid var(--black);
+}
+
+.close {
+  border-radius: 3px;
+}
+
+.close:hover {
+  background-color: var(--teal-hover);
+}

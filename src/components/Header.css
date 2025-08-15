@@ -2,7 +2,7 @@ header {
   justify-content: space-between;
   background-color: var(--teal);
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--black);
 }
 
 header,
