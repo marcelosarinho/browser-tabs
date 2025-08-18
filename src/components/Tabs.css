@@ -22,6 +22,10 @@
   background-color: var(--teal);
 }
 
+.tabs__tab:hover {
+  cursor: pointer;
+}
+
 .tabs__tab--active {
   background-color: var(--white);
   border-bottom: 2px solid var(--black);
