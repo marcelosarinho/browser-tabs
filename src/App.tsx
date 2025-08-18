@@ -11,16 +11,27 @@ export type Tab = {
 }
 
 function App() {
-  const [tabs, setTabs] = useState<Tab[]>([]);
+  const [tabs, setTabs] = useState<Tab[]>([
+    { index: 0, name: 'Nova aba' },
+  ]);
 
-  function newTab() {
-    console.log(tabs.length);
+  function removeTab(index: number) {
+    setTabs(tabs.filter((tab) => tab.index !== index));
+  }
+
+  function addTab() {
+    const newTab: Tab = {
+      index: tabs.length,
+      name: 'Nova aba',
+    };
+
+    setTabs([...tabs, newTab]);
   }
 
   return (
     <main>
       <Header />
-      <Tabs tabs={tabs} />
+      <Tabs remove={removeTab} add={addTab} tabs={tabs} />
       <BrowserURL />
       <Content />
     </main>

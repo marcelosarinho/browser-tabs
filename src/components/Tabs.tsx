@@ -2,44 +2,23 @@ import type { Tab } from '../App';
 import TabIcon from './TabIcon';
 import './Tabs.css';
 
-export default function Tabs(props: { tabs: Tab[], onClick: VoidFunction }) {
-  const { tabs } = props;
+export default function Tabs(props: { tabs: Tab[], add: VoidFunction, remove: (index: number) => void }) {
+  const { tabs, add, remove } = props;
 
   return (
     <section className="tabs__header">
       <div className="tabs">
         {tabs.map((tab: Tab) => (
           <div key={tab.index} className="tabs__tab">
+            <TabIcon />
             <span>{tab.name}</span>
-            <button className="close">
-              <i className="ph ph-x close"></i>
+            <button onClick={() => remove(tab.index)} className="close">
+              <i className="ph ph-x"></i>
             </button>
           </div>
         ))}
-        <div className="tabs__tab">
-          <TabIcon />
-          <span>Título</span>
-          <button className="close">
-            <i className="ph ph-x close"></i>
-          </button>
-        </div>
-        <div className="tabs__tab">
-          <TabIcon />
-          <span>Título</span>
-          <i className="ph ph-x close"></i>
-        </div>
-        <div className="tabs__tab tabs__tab--active">
-          <TabIcon />
-          <span>Título</span>
-          <i className="ph ph-x close"></i>
-        </div>
-        <div className="tabs__tab">
-          <TabIcon />
-          <span>Título</span>
-          <i className="ph ph-x close"></i>
-        </div>
       </div>
-      <button className="tabs__add_button">
+      <button onClick={add} className="tabs__add_button">
         <i className="ph ph-plus"></i>
       </button>
     </section>
