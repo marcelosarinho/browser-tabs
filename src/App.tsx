@@ -8,11 +8,12 @@ import Tabs from './components/Tabs'
 export type Tab = {
   index: number;
   name: string;
+  url: string;
 }
 
 function App() {
   const [tabs, setTabs] = useState<Tab[]>([
-    { index: 0, name: 'Nova aba' },
+    { index: 0, name: 'Nova aba', url: 'localhost:3000' },
   ]);
 
   function removeTab(index: number) {
@@ -23,6 +24,7 @@ function App() {
     const newTab: Tab = {
       index: tabs.length,
       name: 'Nova aba',
+      url: 'localhost:3000'
     };
 
     setTabs([...tabs, newTab]);
