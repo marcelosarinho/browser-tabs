@@ -1,9 +1,15 @@
-.tabs, .tabs__tab {
+.tabs__header {
   display: flex;
+  border-bottom: 1px solid var(--black);
+  align-items: center;
 }
 
 .tabs {
-  border-bottom: 1px solid var(--black);
+  flex: 1;
+}
+
+.tabs, .tabs__tab {
+  display: flex;
 }
 
 .tabs__tab {
@@ -21,10 +27,19 @@
   border-bottom: 2px solid var(--black);
 }
 
-.close {
+.tabs__add_button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+}
+
+.tabs__add_button, .close {
   border-radius: 3px;
 }
 
-.close:hover {
+.tabs__add_button:hover, .close:hover {
   background-color: var(--teal-hover);
 }
