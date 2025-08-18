@@ -32,16 +32,23 @@
 }
 
 .tabs__add_button {
-  background-color: transparent;
-  border: none;
-  display: flex;
-  align-items: center;
   padding: 0.25rem;
   margin: 0 0.25rem;
 }
 
 .tabs__add_button, .close {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.tabs__add_button, .close {
   border-radius: 3px;
+}
+
+.close {
+  padding: 0;
 }
 
 .tabs__add_button:hover, .close:hover {

@@ -11,7 +11,9 @@ export default function Tabs(props: { tabs: Tab[], onClick: VoidFunction }) {
         {tabs.map((tab: Tab) => (
           <div key={tab.index} className="tabs__tab">
             <span>{tab.name}</span>
-            <i className="ph ph-x close"></i>
+            <button className="close">
+              <i className="ph ph-x close"></i>
+            </button>
           </div>
         ))}
         <div className="tabs__tab">
