@@ -32,8 +32,12 @@ function App() {
     <main>
       <Header />
       <Tabs remove={removeTab} add={addTab} tabs={tabs} />
-      <BrowserURL />
-      <Content />
+      {tabs.length > 0 && (
+        <>
+          <BrowserURL />
+          <Content />
+        </>
+      )}
     </main>
   )
 }
