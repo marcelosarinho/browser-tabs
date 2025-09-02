@@ -8,8 +8,8 @@ interface TabsProps {
   tabs: Tab[],
   add: VoidFunction,
   remove: (index: number) => void,
-  selectedTab: number,
-  setSelectedTab: React.Dispatch<React.SetStateAction<number>>,
+  selectedTab: Tab,
+  setSelectedTab: React.Dispatch<React.SetStateAction<Tab>>,
 }
 
 export default function Tabs(props: TabsProps) {
@@ -21,9 +21,9 @@ export default function Tabs(props: TabsProps) {
         <div className="tabs">
           {tabs.map((tab: Tab) => (
             <div
-              onClick={() => setSelectedTab(tab.index)}
+              onClick={() => setSelectedTab(tab)}
               key={tab.index}
-              className={`tabs__tab ${selectedTab === tab.index ? 'tabs__tab--active' : ''}`}>
+              className={`tabs__tab ${selectedTab.index === tab.index ? 'tabs__tab--active' : ''}`}>
               <TabIcon />
               <span>{tab.name}</span>
               <button onClick={() => remove(tab.index)} className="close">
@@ -36,8 +36,8 @@ export default function Tabs(props: TabsProps) {
           <i className="ph ph-plus"></i>
         </button>
       </section>
-      <BrowserURL />
-      <Content />
+      <BrowserURL selectedTabUrl={selectedTab.url} />
+      <Content selectedTabName={selectedTab.name} />
     </>
   )
 }

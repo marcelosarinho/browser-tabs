@@ -13,7 +13,9 @@ function App() {
   const [tabs, setTabs] = useState<Tab[]>([
     { index: 0, name: 'Nova aba 1', url: 'localhost:3000' },
   ]);
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = useState<Tab>(
+    { index: 0, name: 'Nova aba 1', url: 'localhost:3000' },
+  );
 
   function removeTab(index: number) {
     setTabs(tabs.filter((tab) => tab.index !== index));
@@ -22,12 +24,16 @@ function App() {
   function addTab() {
     setTabs(prev => {
       const nextIndex = prev.length > 0 ? prev[prev.length - 1].index + 1 : 0;
-      setSelectedTab(nextIndex);
-      return [...prev, {
+
+      const newTab: Tab = {
         index: nextIndex,
         name: `Nova aba ${nextIndex + 1}`,
         url: 'localhost:3000',
-      }];
+      };
+
+      setSelectedTab(newTab);
+
+      return [...prev, newTab];
     });
   }
 
