@@ -37,7 +37,7 @@ export default function Tabs(props: TabsProps) {
           <i className="ph ph-plus"></i>
         </button>
       </section>
-      <BrowserURL selectedTab={selectedTab} tabs={tabs} setTabs={setTabs} />
+      <BrowserURL selectedTab={selectedTab} setSelectedTab={setSelectedTab} setTabs={setTabs} />
       <Content selectedTabName={selectedTab.name} />
     </>
   )
