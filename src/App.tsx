@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import BrowserURL from './components/BrowserURL'
-import Content from './components/Content'
 import Header from './components/Header'
 import Tabs from './components/Tabs'
 
@@ -36,12 +34,6 @@ function App() {
     <main>
       <Header />
       <Tabs remove={removeTab} add={addTab} tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      {tabs.length > 0 && (
-        <>
-          <BrowserURL />
-          <Content />
-        </>
-      )}
     </main>
   )
 }
