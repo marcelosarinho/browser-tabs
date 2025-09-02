@@ -2,14 +2,25 @@ import type { Tab } from '../App';
 import TabIcon from './TabIcon';
 import './Tabs.css';
 
-export default function Tabs(props: { tabs: Tab[], add: VoidFunction, remove: (index: number) => void }) {
-  const { tabs, add, remove } = props;
+interface TabsProps {
+  tabs: Tab[],
+  add: VoidFunction,
+  remove: (index: number) => void,
+  selectedTab: number,
+  setSelectedTab: React.Dispatch<React.SetStateAction<number>>,
+}
+
+export default function Tabs(props: TabsProps) {
+  const { tabs, add, remove, selectedTab, setSelectedTab } = props;
 
   return (
     <section className="tabs__header">
       <div className="tabs">
         {tabs.map((tab: Tab) => (
-          <div key={tab.index} className="tabs__tab">
+          <div
+            onClick={() => setSelectedTab(tab.index)}
+            key={tab.index}
+            className={`tabs__tab ${selectedTab === tab.index ? 'tabs__tab--active' : ''}`}>
             <TabIcon />
             <span>{tab.name}</span>
             <button onClick={() => remove(tab.index)} className="close">
