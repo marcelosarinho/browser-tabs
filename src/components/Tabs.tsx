@@ -11,10 +11,16 @@ interface TabsProps {
   remove: (index: number) => void,
   selectedTab: Tab,
   setSelectedTab: React.Dispatch<React.SetStateAction<Tab>>,
+  setPreviousTab: React.Dispatch<React.SetStateAction<Tab>>,
 }
 
 export default function Tabs(props: TabsProps) {
-  const { tabs, setTabs, add, remove, selectedTab, setSelectedTab } = props;
+  const { tabs, setTabs, add, remove, selectedTab, setSelectedTab, setPreviousTab } = props;
+
+  function selectTab(tab: Tab) {
+    setPreviousTab(selectedTab);
+    setSelectedTab(tab);
+  }
 
   return (
     <>
@@ -22,7 +28,7 @@ export default function Tabs(props: TabsProps) {
         <div className="tabs">
           {tabs.map((tab: Tab) => (
             <div
-              onClick={() => setSelectedTab(tab)}
+              onClick={() => selectTab(tab)}
               key={tab.index}
               className={`tabs__tab ${selectedTab.index === tab.index ? 'tabs__tab--active' : ''}`}>
               <TabIcon />
