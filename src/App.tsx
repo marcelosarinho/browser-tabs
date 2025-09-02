@@ -11,7 +11,7 @@ export type Tab = {
 
 function App() {
   const [tabs, setTabs] = useState<Tab[]>([
-    { index: 0, name: 'Nova aba', url: 'localhost:3000' },
+    { index: 0, name: 'Nova aba 1', url: 'localhost:3000' },
   ]);
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -20,14 +20,15 @@ function App() {
   }
 
   function addTab() {
-    const newTab: Tab = {
-      index: tabs.length,
-      name: 'Nova aba',
-      url: 'localhost:3000'
-    };
-
-    setTabs([...tabs, newTab]);
-    setSelectedTab(newTab.index);
+    setTabs(prev => {
+      const nextIndex = prev.length > 0 ? prev[prev.length - 1].index + 1 : 0;
+      setSelectedTab(nextIndex);
+      return [...prev, {
+        index: nextIndex,
+        name: `Nova aba ${nextIndex + 1}`,
+        url: 'localhost:3000',
+      }];
+    });
   }
 
   return (
