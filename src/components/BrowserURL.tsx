@@ -1,11 +1,18 @@
+import type { Tab } from '../App';
 import './BrowserURL.css';
 
-export default function BrowserURL(props: { selectedTabUrl: string }) {
-  const { selectedTabUrl } = props;
+interface BrowserURLProps {
+  selectedTab: Tab,
+  tabs: Tab[],
+  setTabs: React.Dispatch<React.SetStateAction<Tab[]>>
+}
+
+export default function BrowserURL(props: BrowserURLProps) {
+  const { selectedTab, tabs, setTabs } = props;
 
   return (
     <div className="url">
-      <span>{selectedTabUrl ?? 'localhost:3000'}</span>
+      <input type="text" value={selectedTab.url} />
     </div>
   )
 }

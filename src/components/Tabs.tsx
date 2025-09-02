@@ -6,6 +6,7 @@ import './Tabs.css';
 
 interface TabsProps {
   tabs: Tab[],
+  setTabs: React.Dispatch<React.SetStateAction<Tab[]>>
   add: VoidFunction,
   remove: (index: number) => void,
   selectedTab: Tab,
@@ -13,7 +14,7 @@ interface TabsProps {
 }
 
 export default function Tabs(props: TabsProps) {
-  const { tabs, add, remove, selectedTab, setSelectedTab } = props;
+  const { tabs, setTabs, add, remove, selectedTab, setSelectedTab } = props;
 
   return (
     <>
@@ -36,7 +37,7 @@ export default function Tabs(props: TabsProps) {
           <i className="ph ph-plus"></i>
         </button>
       </section>
-      <BrowserURL selectedTabUrl={selectedTab.url} />
+      <BrowserURL selectedTab={selectedTab} tabs={tabs} setTabs={setTabs} />
       <Content selectedTabName={selectedTab.name} />
     </>
   )

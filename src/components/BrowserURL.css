@@ -1,5 +1,22 @@
 .url {
-  padding: 1.5rem;
-  font-size: 0.9rem;
+  padding: 1.25rem;
   border-bottom: 1px solid var(--black);
+}
+
+.url, .url > input {
+  font-size: 0.9rem;
+}
+
+.url > input {
+  padding: 0.25rem;
+  border: none;
+  width: 100%;
+}
+
+.url > input:hover {
+  background-color: var(--teal);
+}
+
+.url > input:focus {
+  outline: none;
 }

@@ -40,7 +40,7 @@ function App() {
   return (
     <main>
       <Header />
-      <Tabs remove={removeTab} add={addTab} tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+      <Tabs remove={removeTab} add={addTab} tabs={tabs} setTabs={setTabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
     </main>
   )
 }
