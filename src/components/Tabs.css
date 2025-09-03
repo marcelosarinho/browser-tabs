@@ -21,6 +21,7 @@
   font-size: 0.9rem;
   background-color: var(--teal);
   user-select: none;
+  border-bottom: 2px solid var(--teal);
 }
 
 .tabs__tab:hover {
@@ -54,4 +55,39 @@
 
 .tabs__add_button:hover, .close:hover {
   background-color: var(--teal-hover);
+}
+
+.tab {
+  position: relative;
+}
+
+.tab__tooltip {
+  position: absolute;
+  background-color: var(--zinc);
+  color: var(--white-zinc);
+  left: 50%;
+  top: -120%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 100%;
+  display: none;
+}
+
+.tab__tooltip > h6, .tab__tooltip > p {
+  margin: 0;
+}
+
+.tab__tooltip > h6 {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.tab__tooltip > p {
+  font-size: 0.7rem;
+}
+
+.tab__tooltip:has(+ .tabs__tab:hover) {
+  display: block;
+  z-index: 10;
 }

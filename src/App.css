@@ -7,6 +7,8 @@
   --neutral: oklch(37.1% 0 0);
   --teal: oklch(98.4% 0.014 180.72);
   --teal-hover: oklch(95.3% 0.051 180.801);
+  --zinc: oklch(27.4% 0.006 286.033);
+  --white-zinc: oklch(92% 0.004 286.32);
 }
 
 body {
@@ -17,7 +19,6 @@ body {
 main {
   border: 1px solid var(--black);
   border-radius: 8px;
-  overflow: hidden;
   margin: 1rem auto;
   max-width: 80%;
 }

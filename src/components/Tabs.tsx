@@ -27,15 +27,20 @@ export default function Tabs(props: TabsProps) {
       <section className="tabs__header">
         <div className="tabs">
           {tabs.map((tab: Tab) => (
-            <div
-              onClick={() => selectTab(tab)}
-              key={tab.index}
-              className={`tabs__tab ${selectedTab.index === tab.index ? 'tabs__tab--active' : ''}`}>
-              <TabIcon />
-              <span>{tab.name}</span>
-              <button onClick={() => remove(tab.index)} className="close">
-                <i className="ph ph-x"></i>
-              </button>
+            <div className="tab" key={tab.index}>
+              <div className="tab__tooltip">
+                <h6>{tab.name}</h6>
+                <p>{tab.url ? tab.url : 'Sem URL'}</p>
+              </div>
+              <div
+                onClick={() => selectTab(tab)}
+                className={`tabs__tab ${selectedTab.index === tab.index ? 'tabs__tab--active' : ''}`}>
+                  <TabIcon />
+                  <span>{tab.name}</span>
+                  <button onClick={() => remove(tab.index)} className="close">
+                    <i className="ph ph-x"></i>
+                  </button>
+              </div>
             </div>
           ))}
         </div>
