@@ -71,7 +71,10 @@
   padding: 0.5rem;
   border-radius: 4px;
   width: 100%;
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease 0s, visibility 0s linear 0s;
+  z-index: 10;
 }
 
 .tab__tooltip > h6, .tab__tooltip > p {
@@ -88,6 +91,7 @@
 }
 
 .tab__tooltip:has(+ .tabs__tab:hover) {
-  display: block;
-  z-index: 10;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1s;
 }
