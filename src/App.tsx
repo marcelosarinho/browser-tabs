@@ -27,7 +27,7 @@ function App() {
       const updatedTabs = prev.filter((tab) => tab.index !== index);
 
       if (isSelected) {
-        const nextSelected = updatedTabs.some((tab) => tab.index === previousTab.index) ? previousTab : updatedTabs[0] || null
+        const nextSelected = updatedTabs.some((tab) => tab.index === previousTab.index) ? previousTab : updatedTabs[updatedTabs.length - 1] || null
 
         setSelectedTab(nextSelected);
       } else {
