@@ -21,6 +21,8 @@ function App() {
   )
 
   function removeTab(index: number) {
+    if (tabs.length <= 1) return;
+
     const isSelected = selectedTab.index === index;
 
     setTabs(prev => {
