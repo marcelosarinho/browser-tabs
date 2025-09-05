@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import type { Tab } from "../App";
 import TabIcon from "./TabIcon";
+import TabTooltip from "./TabTooltip";
 
 interface TabProps extends ComponentProps<'div'> {
   tab: Tab,
@@ -20,10 +21,7 @@ export default function Tab(props: TabProps) {
 
   return (
     <div className="tab">
-      <div className="tab__tooltip">
-        <h6>{tab.name}</h6>
-        <p>{tab.url ? tab.url : 'Sem URL'}</p>
-      </div>
+      <TabTooltip tab={tab} />
       <div
         onClick={() => selectTab(tab)}
         className={`tabs__tab ${selectedTab.index === tab.index ? 'tabs__tab--active' : ''}`}>
