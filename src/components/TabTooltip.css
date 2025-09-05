@@ -1,0 +1,34 @@
+.tab__tooltip {
+  position: absolute;
+  background-color: var(--zinc);
+  color: var(--white-zinc);
+  left: 50%;
+  top: -120%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease 0s, visibility 0s linear 0s;
+  z-index: 9990;
+}
+
+.tab__tooltip > h6, .tab__tooltip > p {
+  margin: 0;
+}
+
+.tab__tooltip > h6 {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.tab__tooltip > p {
+  font-size: 0.7rem;
+}
+
+.tab__tooltip:has(+ .tabs__tab:hover) {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1s;
+}

@@ -1,4 +1,5 @@
 import type { Tab } from "../App";
+import './TabTooltip.css';
 
 export default function TabTooltip(props: { tab: Tab }) {
   const { tab } = props;
