@@ -3,6 +3,9 @@ import BrowserURL from './BrowserURL';
 import Content from './Content';
 import './Tabs.css';
 import Tab from './Tab';
+import { useState } from 'react';
+import { closestCenter, DndContext, DragOverlay, PointerSensor, useSensor, useSensors, type DragEndEvent, type DragStartEvent, type UniqueIdentifier } from '@dnd-kit/core';
+import { arrayMove, horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 
 interface TabsProps {
   tabs: TabType[],
@@ -17,10 +20,53 @@ interface TabsProps {
 export default function Tabs(props: TabsProps) {
   const { tabs, setTabs, add, remove, selectedTab, setSelectedTab, setPreviousTab } = props;
 
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor)
+  )
+
+  function handleDragStart(event: DragStartEvent) {
+    const { active } = event;
+
+    setActiveId(active.id)
+  }
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+
+    if (over?.id && active.id !== over.id) {
+      setTabs((tabs) => {
+        const oldIndex = tabs.map(tab => tab.index).indexOf(Number(active.id));
+        const newIndex = tabs.map(tab => tab.index).indexOf(Number(over.id));
+
+        return arrayMove(tabs, oldIndex, newIndex);
+      })
+    }
+
+    setActiveId(null);
+  }
+
   return (
     <>
       <section className="tabs__header">
         <div className="tabs">
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={tabs.map(tab => tab.index)}
+              strategy={horizontalListSortingStrategy}
+            >
+              {tabs.map(tab => <Tab key={tab.index} tab={tab} selectedTab={selectedTab} remove={remove} setSelectedTab={setSelectedTab} setPreviousTab={setPreviousTab} />)}
+            </SortableContext>
+            <DragOverlay>
+              {activeId ? <Tab tab={selectedTab} selectedTab={selectedTab} remove={remove} setSelectedTab={(setSelectedTab)} setPreviousTab={setPreviousTab} /> : null}
+            </DragOverlay>
+          </DndContext>
           {tabs.map((tab: TabType) => (
             <Tab tab={tab} selectedTab={selectedTab} remove={remove} setSelectedTab={setSelectedTab} setPreviousTab={setPreviousTab} />
           ))}
