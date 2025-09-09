@@ -43,7 +43,6 @@ export default function Tabs(props: TabsProps) {
     if (activeElement) {
       const rect = activeElement.getBoundingClientRect();
       setOverlayWidth(rect.width);
-      console.log(rect.width);
     }
   }
 
