@@ -11,16 +11,19 @@ interface TabProps extends ComponentProps<'div'> {
   remove: (index: number) => void,
   setSelectedTab: React.Dispatch<React.SetStateAction<Tab>>,
   setPreviousTab: React.Dispatch<React.SetStateAction<Tab>>,
+  isOverlay?: boolean,
+  width?: number | null,
 }
 
 export default function Tab(props: TabProps) {
-  const { tab, selectedTab, remove, setSelectedTab, setPreviousTab } = props;
+  const { tab, selectedTab, remove, setSelectedTab, setPreviousTab, width, isOverlay } = props;
 
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: tab.index });
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: tab.index });
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
+    transition: isDragging ? "none" : transition,
+    opacity: isDragging && !isOverlay ? 0.3 : 1,
   }
   
   function selectTab(tab: Tab) {
@@ -29,9 +32,10 @@ export default function Tab(props: TabProps) {
   }
 
   return (
-    <div ref={setNodeRef} {...attributes} {...listeners} style={style} className="tab">
+    <div data-tab-id={tab.index} ref={setNodeRef} {...attributes} {...listeners} style={style} className="tab">
       <TabTooltip tab={tab} />
       <div
+        style={{ minWidth: width ?? 0 }}
         onClick={() => selectTab(tab)}
         className={`tabs__tab ${selectedTab.index === tab.index ? 'tabs__tab--active' : ''}`}>
           <TabIcon />
