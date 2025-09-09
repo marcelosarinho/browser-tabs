@@ -11,15 +11,15 @@ export type Tab = {
 }
 
 function App() {
-  const index = useRef(0);
+  const index = useRef(1);
   const [tabs, setTabs] = useState<Tab[]>([
-    { index: index.current, name: 'Nova aba 0', url: '' },
+    { index: index.current, name: 'Nova aba 1', url: '' },
   ]);
   const [selectedTab, setSelectedTab] = useState<Tab>(
-    { index: index.current, name: 'Nova aba 0', url: '' },
+    { index: index.current, name: 'Nova aba 1', url: '' },
   );
   const [previousTab, setPreviousTab] = useState<Tab>(
-    { index: index.current, name: 'Nova aba 0', url: '' },
+    { index: index.current, name: 'Nova aba 1', url: '' },
   );
 
   function removeTab(index: number) {
