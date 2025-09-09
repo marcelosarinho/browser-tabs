@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import Tabs from './components/Tabs'
@@ -11,15 +11,16 @@ export type Tab = {
 }
 
 function App() {
+  const index = useRef(0);
   const [tabs, setTabs] = useState<Tab[]>([
-    { index: 0, name: 'Nova aba 1', url: '' },
+    { index: index.current, name: 'Nova aba 0', url: '' },
   ]);
   const [selectedTab, setSelectedTab] = useState<Tab>(
-    { index: 0, name: 'Nova aba 1', url: '' },
+    { index: index.current, name: 'Nova aba 0', url: '' },
   );
   const [previousTab, setPreviousTab] = useState<Tab>(
-    { index: 0, name: 'Nova aba 1', url: '' },
-  )
+    { index: index.current, name: 'Nova aba 0', url: '' },
+  );
 
   function removeTab(index: number) {
     if (tabs.length <= 1) return;
@@ -42,20 +43,17 @@ function App() {
   }
 
   function addTab() {
-    setTabs(prev => {
-      const nextIndex = prev.length > 0 ? prev[prev.length - 1].index + 1 : 0;
+    index.current += 1;
 
-      const newTab: Tab = {
-        index: nextIndex,
-        name: `Nova aba ${nextIndex + 1}`,
-        url: '',
-      };
+    const newTab: Tab = {
+      index: index.current,
+      name: `Nova aba ${index.current}`,
+      url: '',
+    }
 
-      setPreviousTab(selectedTab);
-      setSelectedTab(newTab);
-
-      return [...prev, newTab];
-    });
+    setPreviousTab(selectedTab);
+    setSelectedTab(newTab);
+    setTabs([...tabs, newTab]);
   }
 
   return (
