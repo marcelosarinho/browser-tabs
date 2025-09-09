@@ -26,6 +26,7 @@ export default function BrowserURL(props: BrowserURLProps) {
   return (
     <div className="url">
       <input
+        onKeyDown={(e) => e.key === "Enter" ? console.log('Apertou ENTER') : null}
         onChange={(e) => changeURL(e)}
         type="text"
         value={selectedTab.url}
