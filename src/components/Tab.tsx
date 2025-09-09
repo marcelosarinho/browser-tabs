@@ -3,6 +3,7 @@ import type { Tab } from "../App";
 import TabIcon from "./TabIcon";
 import TabTooltip from "./TabTooltip";
 import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface TabProps extends ComponentProps<'div'> {
   tab: Tab,
@@ -18,7 +19,8 @@ export default function Tab(props: TabProps) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: tab.index });
 
   const style = {
-    transform: CSS
+    transform: CSS.Transform.toString(transform),
+    transition,
   }
   
   function selectTab(tab: Tab) {
@@ -27,7 +29,7 @@ export default function Tab(props: TabProps) {
   }
 
   return (
-    <div className="tab">
+    <div ref={setNodeRef} {...attributes} {...listeners} style={style} className="tab">
       <TabTooltip tab={tab} />
       <div
         onClick={() => selectTab(tab)}

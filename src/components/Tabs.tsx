@@ -37,8 +37,8 @@ export default function Tabs(props: TabsProps) {
 
     if (over?.id && active.id !== over.id) {
       setTabs((tabs) => {
-        const oldIndex = tabs.map(tab => tab.index).indexOf(Number(active.id));
-        const newIndex = tabs.map(tab => tab.index).indexOf(Number(over.id));
+        const oldIndex = tabs.findIndex(tab => tab.index === active.id);
+        const newIndex = tabs.findIndex(tab => tab.index === over.id);
 
         return arrayMove(tabs, oldIndex, newIndex);
       })
@@ -64,12 +64,9 @@ export default function Tabs(props: TabsProps) {
               {tabs.map(tab => <Tab key={tab.index} tab={tab} selectedTab={selectedTab} remove={remove} setSelectedTab={setSelectedTab} setPreviousTab={setPreviousTab} />)}
             </SortableContext>
             <DragOverlay>
-              {activeId ? <Tab tab={selectedTab} selectedTab={selectedTab} remove={remove} setSelectedTab={(setSelectedTab)} setPreviousTab={setPreviousTab} /> : null}
+              {activeId ? <Tab tab={tabs.find(tab => tab.index === activeId)!} selectedTab={selectedTab} remove={remove} setSelectedTab={(setSelectedTab)} setPreviousTab={setPreviousTab} /> : null}
             </DragOverlay>
           </DndContext>
-          {tabs.map((tab: TabType) => (
-            <Tab tab={tab} selectedTab={selectedTab} remove={remove} setSelectedTab={setSelectedTab} setPreviousTab={setPreviousTab} />
-          ))}
         </div>
         <button onClick={add} className="tabs__add_button">
           <i className="ph ph-plus"></i>
