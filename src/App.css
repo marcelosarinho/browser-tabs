@@ -11,6 +11,10 @@
   --white-zinc: oklch(92% 0.004 286.32);
 }
 
+html, body, #root, main {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;

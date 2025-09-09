@@ -13,10 +13,11 @@ interface TabProps extends ComponentProps<'div'> {
   setPreviousTab: React.Dispatch<React.SetStateAction<Tab>>,
   isOverlay?: boolean,
   width?: number | null,
+  setTemporaryUrl: React.Dispatch<React.SetStateAction<string>>,
 }
 
 export default function Tab(props: TabProps) {
-  const { tab, selectedTab, remove, setSelectedTab, setPreviousTab, width, isOverlay } = props;
+  const { tab, selectedTab, remove, setSelectedTab, setPreviousTab, setTemporaryUrl, width, isOverlay } = props;
 
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: tab.index });
 
@@ -27,6 +28,7 @@ export default function Tab(props: TabProps) {
   }
   
   function selectTab(tab: Tab) {
+    setTemporaryUrl(tab.url);
     setPreviousTab(selectedTab);
     setSelectedTab(tab);
   }

@@ -23,6 +23,7 @@ export default function Tabs(props: TabsProps) {
 
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [overlayWidth, setOverlayWidth] = useState<number | null>(null);
+  const [temporaryUrl, setTemporaryUrl] = useState('');
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -77,10 +78,10 @@ export default function Tabs(props: TabsProps) {
               items={tabs.map(tab => tab.index)}
               strategy={horizontalListSortingStrategy}
             >
-              {tabs.map(tab => <Tab key={tab.index} tab={tab} selectedTab={selectedTab} remove={remove} setSelectedTab={setSelectedTab} setPreviousTab={setPreviousTab} />)}
+              {tabs.map(tab => <Tab key={tab.index} tab={tab} selectedTab={selectedTab} remove={remove} setSelectedTab={setSelectedTab} setPreviousTab={setPreviousTab} setTemporaryUrl={setTemporaryUrl} />)}
             </SortableContext>
             <DragOverlay>
-              {activeId ? <Tab tab={tabs.find(tab => tab.index === activeId)!} selectedTab={selectedTab} remove={remove} setSelectedTab={(setSelectedTab)} setPreviousTab={setPreviousTab} width={overlayWidth} isOverlay /> : null}
+              {activeId ? <Tab tab={tabs.find(tab => tab.index === activeId)!} selectedTab={selectedTab} remove={remove} setSelectedTab={(setSelectedTab)} setPreviousTab={setPreviousTab} width={overlayWidth} setTemporaryUrl={setTemporaryUrl} isOverlay /> : null}
             </DragOverlay>
           </DndContext>
         </div>
@@ -88,8 +89,8 @@ export default function Tabs(props: TabsProps) {
           <i className="ph ph-plus"></i>
         </button>
       </section>
-      <BrowserURL selectedTab={selectedTab} setSelectedTab={setSelectedTab} setTabs={setTabs} />
-      <Content selectedTabName={selectedTab.name} />
+      <BrowserURL selectedTab={selectedTab} setSelectedTab={setSelectedTab} setTabs={setTabs} setTemporaryUrl={setTemporaryUrl} temporaryUrl={temporaryUrl} />
+      <Content url={selectedTab.url} />
     </>
   )
 }

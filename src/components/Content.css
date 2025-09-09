@@ -1,6 +1,6 @@
 .content {
-  text-align: center;
-  padding: 1.5rem;
+  width: 100%;
+  height: 100%;
 }
 
 .content > h1 {
@@ -10,4 +10,9 @@
 
 .content > p {
   margin: 0;
+}
+
+.content > iframe {
+  width: 100%;
+  height: 100%;
 }

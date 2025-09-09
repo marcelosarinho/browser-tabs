@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import Tabs from './components/Tabs'
@@ -7,17 +7,18 @@ export type Tab = {
   index: number;
   name: string;
   url: string;
+  content?: string;
 }
 
 function App() {
   const [tabs, setTabs] = useState<Tab[]>([
-    { index: 0, name: 'Nova aba 1', url: 'localhost:3000' },
+    { index: 0, name: 'Nova aba 1', url: '' },
   ]);
   const [selectedTab, setSelectedTab] = useState<Tab>(
-    { index: 0, name: 'Nova aba 1', url: 'localhost:3000' },
+    { index: 0, name: 'Nova aba 1', url: '' },
   );
   const [previousTab, setPreviousTab] = useState<Tab>(
-    { index: 0, name: 'Nova aba 1', url: 'localhost:3000' },
+    { index: 0, name: 'Nova aba 1', url: '' },
   )
 
   function removeTab(index: number) {
@@ -47,7 +48,7 @@ function App() {
       const newTab: Tab = {
         index: nextIndex,
         name: `Nova aba ${nextIndex + 1}`,
-        url: 'localhost:3000',
+        url: '',
       };
 
       setPreviousTab(selectedTab);
@@ -56,19 +57,6 @@ function App() {
       return [...prev, newTab];
     });
   }
-
-  async function fetchHTML() {
-    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://wikipedia.org')}`)
-    .then(response => {
-      if (response.ok) return response.json()
-      throw new Error('Network response was not ok.')
-    })
-    .then(data => console.log(data));
-  }
-
-  useEffect(() => {
-    fetchHTML();
-  }, []);
 
   return (
     <main>
