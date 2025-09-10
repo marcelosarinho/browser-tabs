@@ -28,8 +28,10 @@ export default function TabsProvider({ children }: { children: React.ReactNode }
         const nextSelected = updatedTabs.some((tab) => tab.index === previousTab.index) ? previousTab : updatedTabs[updatedTabs.length - 1] || null
 
         setSelectedTab(nextSelected);
+        setTemporaryUrl(nextSelected.url);
       } else {
         setSelectedTab(selectedTab);
+        setTemporaryUrl(selectedTab.url);
       }
 
       return updatedTabs;
@@ -48,6 +50,7 @@ export default function TabsProvider({ children }: { children: React.ReactNode }
     setPreviousTab(selectedTab);
     setSelectedTab(newTab);
     setTabs([...tabs, newTab]);
+    setTemporaryUrl('');
   }
 
   return (
