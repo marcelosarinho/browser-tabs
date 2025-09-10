@@ -1,16 +1,9 @@
 import type { Tab } from '../App';
+import { useTabs } from '../context/TabsContext';
 import './BrowserURL.css';
 
-interface BrowserURLProps {
-  selectedTab: Tab,
-  setSelectedTab: React.Dispatch<React.SetStateAction<Tab>>,
-  setTabs: React.Dispatch<React.SetStateAction<Tab[]>>,
-  setTemporaryUrl: React.Dispatch<React.SetStateAction<string>>,
-  temporaryUrl: string
-}
-
-export default function BrowserURL(props: BrowserURLProps) {
-  const { selectedTab, setSelectedTab, setTabs, setTemporaryUrl, temporaryUrl } = props;
+export default function BrowserURL() {
+  const { selectedTab, setSelectedTab, setTabs, setTemporaryUrl, temporaryUrl } = useTabs();
 
   function updateTabs(tabs: Tab[], index: number, fieldToUpdate: Partial<Tab>) {
     return tabs.map((tab) => tab.index === index ? { ...tab, ...fieldToUpdate } : tab)

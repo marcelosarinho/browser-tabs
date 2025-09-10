@@ -1,4 +1,3 @@
-import type { Tab as TabType } from '../App';
 import BrowserURL from './BrowserURL';
 import Content from './Content';
 import './Tabs.css';
@@ -7,23 +6,13 @@ import { useState } from 'react';
 import { closestCenter, DndContext, DragOverlay, PointerSensor, useSensor, useSensors, type DragEndEvent, type DragStartEvent, type UniqueIdentifier } from '@dnd-kit/core';
 import { arrayMove, horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 import { restrictToHorizontalAxis } from '@dnd-kit/modifiers';
+import { useTabs } from '../context/TabsContext';
 
-interface TabsProps {
-  tabs: TabType[],
-  setTabs: React.Dispatch<React.SetStateAction<TabType[]>>
-  add: VoidFunction,
-  remove: (index: number) => void,
-  selectedTab: TabType,
-  setSelectedTab: React.Dispatch<React.SetStateAction<TabType>>,
-  setPreviousTab: React.Dispatch<React.SetStateAction<TabType>>,
-}
-
-export default function Tabs(props: TabsProps) {
-  const { tabs, setTabs, add, remove, selectedTab, setSelectedTab, setPreviousTab } = props;
+export default function Tabs() {
+  const { tabs, setTabs, addTab, selectedTab } = useTabs();
 
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [overlayWidth, setOverlayWidth] = useState<number | null>(null);
-  const [temporaryUrl, setTemporaryUrl] = useState('');
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -77,18 +66,18 @@ export default function Tabs(props: TabsProps) {
               items={tabs.map(tab => tab.index)}
               strategy={horizontalListSortingStrategy}
             >
-              {tabs.map(tab => <Tab key={tab.index} tab={tab} selectedTab={selectedTab} remove={remove} setSelectedTab={setSelectedTab} setPreviousTab={setPreviousTab} setTemporaryUrl={setTemporaryUrl} />)}
+              {tabs.map(tab => <Tab key={tab.index} tab={tab} />)}
             </SortableContext>
             <DragOverlay>
-              {activeId ? <Tab tab={tabs.find(tab => tab.index === activeId)!} selectedTab={selectedTab} remove={remove} setSelectedTab={(setSelectedTab)} setPreviousTab={setPreviousTab} width={overlayWidth} setTemporaryUrl={setTemporaryUrl} isOverlay /> : null}
+              {activeId ? <Tab tab={tabs.find(tab => tab.index === activeId)!} width={overlayWidth} isOverlay /> : null}
             </DragOverlay>
           </DndContext>
         </div>
-        <button onClick={add} className="tabs__add_button">
+        <button onClick={addTab} className="tabs__add_button">
           <i className="ph ph-plus"></i>
         </button>
       </section>
-      <BrowserURL selectedTab={selectedTab} setSelectedTab={setSelectedTab} setTabs={setTabs} setTemporaryUrl={setTemporaryUrl} temporaryUrl={temporaryUrl} />
+      <BrowserURL />
       <Content url={selectedTab.url} />
     </>
   )

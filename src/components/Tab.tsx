@@ -4,20 +4,17 @@ import TabIcon from "./TabIcon";
 import TabTooltip from "./TabTooltip";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useTabs } from "../context/TabsContext";
 
 interface TabProps extends ComponentProps<'div'> {
   tab: Tab,
-  selectedTab: Tab,
-  remove: (index: number) => void,
-  setSelectedTab: React.Dispatch<React.SetStateAction<Tab>>,
-  setPreviousTab: React.Dispatch<React.SetStateAction<Tab>>,
   isOverlay?: boolean,
   width?: number | null,
-  setTemporaryUrl: React.Dispatch<React.SetStateAction<string>>,
 }
 
 export default function Tab(props: TabProps) {
-  const { tab, selectedTab, remove, setSelectedTab, setPreviousTab, setTemporaryUrl, width, isOverlay } = props;
+  const { tab, width, isOverlay } = props;
+  const { selectedTab, removeTab, setSelectedTab, setPreviousTab, setTemporaryUrl } = useTabs();
 
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: tab.index });
 
@@ -42,7 +39,7 @@ export default function Tab(props: TabProps) {
         className={`tabs__tab ${selectedTab.index === tab.index ? 'tabs__tab--active' : ''}`}>
           <TabIcon />
           <span>{tab.name}</span>
-          <button onClick={() => remove(tab.index)} className="close">
+          <button onClick={() => removeTab(tab.index)} className="close">
             <i className="ph ph-x"></i>
           </button>
       </div>
